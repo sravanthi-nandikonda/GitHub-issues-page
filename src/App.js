@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import IssueList from "./pages/IssueList";
+import IssueDetail from "./pages/IssueDetail";
+import Pagination from "./Pagination";
+
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+    <Router>
+      <div className="App">
+        <Container>
+          <Switch>
+            <Route exact path="/">
+              <IssueList />
+            </Route>
+            <Route path="/issues/:issueId">
+              <IssueDetail />
+            </Route>
+          </Switch>
+        </Container>
+      </div>
+    </Router>
+    <Pagination />
+
+   </>
   );
-}
+} 
 
 export default App;
